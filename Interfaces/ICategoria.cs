@@ -14,7 +14,7 @@ namespace API_Edux.Interfaces
 
         Categoria BuscarPorId(int id);
 
-        Categoria Alterar(Categoria c);
+        Categoria Alterar(int id, Categoria c);
 
         void Excluir(int id);
     }

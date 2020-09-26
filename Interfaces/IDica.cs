@@ -14,7 +14,7 @@ namespace API_Edux.Interfaces
 
         Dica BuscarPorId(int id);
 
-        Dica Alterar(Dica d);
+        Dica Alterar(int id, Dica d);
 
         void Excluir(int id);
     }

@@ -13,8 +13,9 @@ namespace API_Edux.Interfaces
         List<Usuario> LerTodos();
 
         Usuario BuscarPorId(int id);
+       
 
-        Usuario Alterar(Usuario j);
+        Usuario Alterar(int id, Usuario j);
 
         void Excluir(int id);
     }

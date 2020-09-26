@@ -14,7 +14,8 @@ namespace API_Edux.Interfaces
 
         Curtida BuscarPorId(int id);
 
-        Curtida Alterar(Curtida l);
+
+        Curtida Alterar(int id, Curtida l);
 
         void Excluir(int id);
     }

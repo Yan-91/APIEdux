@@ -13,8 +13,9 @@ namespace API_Edux.Interfaces
         List<Perfil> LerTodos();
 
         Perfil BuscarPorId(int id);
+        
 
-        Perfil Alterar(Perfil a);
+        Perfil Alterar(int id, Perfil a);
 
         void Excluir(int id);
     }

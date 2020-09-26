@@ -13,8 +13,10 @@ namespace API_Edux.Interfaces
         List<ProfessorTurma> LerTodos();
 
         ProfessorTurma BuscarPorId(int id);
+       
 
-        ProfessorTurma Alterar(ProfessorTurma e);
+        ProfessorTurma Alterar(int id, ProfessorTurma e);
+
 
         void Excluir(int id);
     }

@@ -13,8 +13,9 @@ namespace API_Edux.Interfaces
         List<Turma> LerTodos();
 
         Turma BuscarPorId(int id);
+       
 
-        Turma Alterar(Turma f);
+        Turma Alterar(int id, Turma f);
 
         void Excluir(int id);
     }

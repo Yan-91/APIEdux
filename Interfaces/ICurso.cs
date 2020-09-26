@@ -14,7 +14,8 @@ namespace API_Edux.Interfaces
 
         Curso BuscarPorId(int id);
 
-        Curso Alterar(Curso k);
+
+        Curso Alterar(int id, Curso k);
 
         void Excluir(int id);
     }

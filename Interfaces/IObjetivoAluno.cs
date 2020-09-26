@@ -13,8 +13,9 @@ namespace API_Edux.Interfaces
         List<ObjetivoAluno> LerTodos();
 
         ObjetivoAluno BuscarPorId(int id);
+        
 
-        ObjetivoAluno Alterar(ObjetivoAluno b);
+        ObjetivoAluno Alterar(int id, ObjetivoAluno b);
 
         void Excluir(int id);
     }

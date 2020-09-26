@@ -14,7 +14,7 @@ namespace API_Edux.Interfaces
 
         Instituicao BuscarPorId(int id);
 
-        Instituicao Alterar(Instituicao i);
+        Instituicao Alterar(int id, Instituicao i);
 
         void Excluir(int id);
     }

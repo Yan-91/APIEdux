@@ -2,13 +2,28 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using API_Edux.Domains;
+using Microsoft.Data.SqlClient;
 
 namespace API_Edux.Contexts
 {
     public partial class EduxContext : DbContext
     {
+        SqlConnection conec = new SqlConnection();
         public EduxContext()
         {
+            conec.ConnectionString = @"Data Source = DESKTOP - EKBOU6F\SQLEXPRESS; Initial Catalog = ProjetoEscola; Persist Security Info = True; User ID = sa; Password = ***********";
+        }
+        public SqlConnection Conectar()
+        {
+            if (conec.State == System.Data.ConnectionState.Closed)
+            {
+                conec.Open();
+            }
+            return conec;
+        }
+        public void Desconectar()
+        {
+            conec.Close();
         }
 
         public EduxContext(DbContextOptions<EduxContext> options)
