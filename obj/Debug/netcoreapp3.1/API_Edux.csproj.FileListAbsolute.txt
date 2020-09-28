@@ -54,8 +54,8 @@ C:\Users\Yan\Documents\ProjetoEdux\API_Edux\API_Edux\bin\Debug\netcoreapp3.1\run
 C:\Users\Yan\Documents\ProjetoEdux\API_Edux\API_Edux\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Yan\Documents\ProjetoEdux\API_Edux\API_Edux\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Yan\Documents\ProjetoEdux\API_Edux\API_Edux\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\Yan\Documents\ProjetoEdux\API_Edux\API_Edux\obj\Debug\netcoreapp3.1\API_Edux.csproj.CoreCompileInputs.cache
-C:\Users\Yan\Documents\ProjetoEdux\API_Edux\API_Edux\obj\Debug\netcoreapp3.1\API_Edux.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Yan\Documents\ProjetoEdux\API_Edux\API_Edux\obj\Debug\netcoreapp3.1\API_Edux.dll
 C:\Users\Yan\Documents\ProjetoEdux\API_Edux\API_Edux\obj\Debug\netcoreapp3.1\API_Edux.pdb
 C:\Users\Yan\Documents\ProjetoEdux\API_Edux\API_Edux\obj\Debug\netcoreapp3.1\API_Edux.genruntimeconfig.cache
+C:\Users\Yan\Documents\ProjetoEdux\API_Edux\API_Edux\obj\Debug\netcoreapp3.1\API_Edux.csproj.CoreCompileInputs.cache
+C:\Users\Yan\Documents\ProjetoEdux\API_Edux\API_Edux\obj\Debug\netcoreapp3.1\API_Edux.MvcApplicationPartsAssemblyInfo.cache

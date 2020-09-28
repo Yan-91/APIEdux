@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API_Edux.Domains
 {
@@ -12,7 +14,10 @@ namespace API_Edux.Domains
 
         public int IdDica { get; set; }
         public string Texto { get; set; }
-        public string Imagem { get; set; }
+        [NotMapped]//Não mapeia a propriedade no banco
+        public IFormFile Imagem { get; set; }
+
+        public string UrlImagem { get; set; }
         public int? IdUsuario { get; set; }
 
         public virtual Usuario IdUsuarioNavigation { get; set; }
