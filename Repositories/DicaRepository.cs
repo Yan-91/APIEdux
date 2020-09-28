@@ -15,10 +15,21 @@ namespace API_Edux.Repositories
         EduxContext conexao = new EduxContext();
         //chamando o comando
         SqlCommand cmd = new SqlCommand();
-        
+
         public Dica Alterar(int id, Dica d)
         {
-            throw new NotImplementedException();
+            cmd.Connection = conexao.Conectar();
+            //Aplicando os parametros
+            cmd.CommandText = "UPDATE Dica SET Texto = @texto WHERE IdDica = @id";
+            cmd.CommandText = "UPDATE Dica SET Imagem = @imagem WHERE IdDica = @id";
+
+            cmd.Parameters.AddWithValue("@texto", d.Texto);
+            cmd.Parameters.AddWithValue("@id", id);
+
+            cmd.ExecuteNonQuery();
+            //encerrando conexão
+            conexao.Desconectar();
+            return d;
         }
 
         public Dica BuscarPorId(int id)
@@ -52,6 +63,10 @@ namespace API_Edux.Repositories
                 "INSERT INTO Dica (Texto)" +
                 "VALUES" +
                 "(@texto)";
+            cmd.CommandText =
+                "INSERT INTO Dica (Imagem)" +
+                "VALUES" +
+                "(@imagem)";
             cmd.Parameters.AddWithValue("@texto", d.Texto);
 
             //POST = ExecuteNonQuery();
@@ -62,7 +77,13 @@ namespace API_Edux.Repositories
 
         public void Excluir(int id)
         {
-            throw new NotImplementedException();
+            cmd.Connection = conexao.Conectar();
+
+            //exibindo o id que tem que ser deletado
+            cmd.CommandText = "DELETE FROM Dica WHERE IdDica = @id";
+            cmd.Parameters.AddWithValue("@id", id);
+
+            cmd.ExecuteNonQuery
         }
 
         public List<Dica> LerTodos()
