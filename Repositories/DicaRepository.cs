@@ -83,7 +83,8 @@ namespace API_Edux.Repositories
             cmd.CommandText = "DELETE FROM Dica WHERE IdDica = @id";
             cmd.Parameters.AddWithValue("@id", id);
 
-            cmd.ExecuteNonQuery
+            cmd.ExecuteNonQuery();
+            conexao.Desconectar();
         }
 
         public List<Dica> LerTodos()
