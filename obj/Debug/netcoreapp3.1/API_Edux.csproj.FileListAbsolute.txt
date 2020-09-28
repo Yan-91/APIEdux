@@ -59,3 +59,5 @@ C:\Users\Yan\Documents\ProjetoEdux\API_Edux\API_Edux\obj\Debug\netcoreapp3.1\API
 C:\Users\Yan\Documents\ProjetoEdux\API_Edux\API_Edux\obj\Debug\netcoreapp3.1\API_Edux.dll
 C:\Users\Yan\Documents\ProjetoEdux\API_Edux\API_Edux\obj\Debug\netcoreapp3.1\API_Edux.pdb
 C:\Users\Yan\Documents\ProjetoEdux\API_Edux\API_Edux\obj\Debug\netcoreapp3.1\API_Edux.genruntimeconfig.cache
+C:\Users\giova\Desktop\APIEdux\obj\Debug\netcoreapp3.1\API_Edux.dll
+C:\Users\giova\Desktop\APIEdux\obj\Debug\netcoreapp3.1\API_Edux.pdb
