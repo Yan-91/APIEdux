@@ -30,7 +30,7 @@ namespace API_Edux.Repositories
             conexao.Desconectar();
             return e;
         }
-        //Cauê vou te passar o Link para vc ver as tabelas https://classroom.google.com/u/0/c/MTI4MjM4NDQyMjY1/a/MTcxNTA2MzQxNjc0/details entra ae e ve a tabela certa
+       
 
 
         public ProfessorTurma BuscarPorId(int id)
@@ -47,10 +47,10 @@ namespace API_Edux.Repositories
             while (dados.Read())
 
             {
-
-                e.IdTurma = Convert.ToInt32(dados.GetValue(0));
+                e.IdProfessorTurma = Convert.ToInt32(dados.GetValue(0));
                 e.Descricao = dados.GetValue(1).ToString();
-                e.IdUsuario = Convert.ToInt32(dados.GetValue(2));
+                e.IdTurma = Convert.ToInt32(dados.GetValue(2));
+                e.IdUsuario = Convert.ToInt32(dados.GetValue(3));
 
             }
             conexao.Desconectar();
@@ -61,17 +61,53 @@ namespace API_Edux.Repositories
          }
         public ProfessorTurma Cadastrar(ProfessorTurma e)
         {
-            throw new NotImplementedException();
+            cmd.Connection = conexao.Conectar();
+
+            cmd.CommandText =
+                "INSERT INTO ProfessorTurma(Descricao)" +
+                "VALUES" +
+                "(@descricao)";
+            cmd.Parameters.AddWithValue("@descricao", e.Descricao);
+
+            cmd.ExecuteNonQuery();
+            return e;
         }
 
         public void Excluir(int id)
         {
-            throw new NotImplementedException();
+            cmd.Connection = conexao.Conectar();
+
+            cmd.CommandText = "DELETE FROM ProfessorTurma WHERE IdProfessorTurma = @id";
+            cmd.Parameters.AddWithValue("@id", id);
+
+            cmd.ExecuteNonQuery();
+            conexao.Desconectar();
         }
 
         public List<ProfessorTurma> LerTodos()
         {
-            throw new NotImplementedException();
+            cmd.Connection = conexao.Conectar();
+            cmd.CommandText = "SELECT FROM ProfessorTurma";
+
+            SqlDataReader dados = cmd.ExecuteReader();
+            List<ProfessorTurma> professorturmas = new List<ProfessorTurma>();
+            while (dados.Read())
+            {
+                professorturmas.Add(
+                    new ProfessorTurma()
+                    {
+                        IdProfessorTurma = Convert.ToInt32(dados.GetValue(0)),
+                        Descricao = dados.GetValue(1).ToString(),
+                        IdTurma = Convert.ToInt32(dados.GetValue(2)),
+                        IdUsuario = Convert.ToInt32(dados.GetValue(3))
+
+            }
+
+                    );
+            }
+            conexao.Desconectar();
+            return professorturmas;
         }
     }
 }
+    
