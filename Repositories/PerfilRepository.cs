@@ -18,7 +18,7 @@ namespace API_Edux.Repositories
         {
             cmd.Connection = conexao.Conectar();
 
-            cmd.CommandText = "UPDATE Perfil SET Permiisao = @permissao WHERE IdPerfil = @id";
+            cmd.CommandText = "UPDATE Perfil SET Permissao = @permissao WHERE IdPerfil = @id";
 
             cmd.Parameters.AddWithValue("@permissao", a.Permissao);
 

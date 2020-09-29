@@ -84,37 +84,10 @@ namespace API_Edux.Repositories
         {
             cmd.Connection = conexao.Conectar();
             cmd.CommandText =
-                "INSERT INTO Instituicao (Nome)" +
+                "INSERT INTO Instituicao (Nome, Logradouro, Numero, Complemento , Bairro, Cidade, Uf, Cep)" +
                 "VALUES" +
-                "(@nome)";
-            cmd.CommandText =
-                "INSERT INTO Instituicao (Logradouro)" +
-                "VALUES" +
-                "(@logradouro)";
-            cmd.CommandText =
-                "INSERT INTO Instituicao (Numero)" +
-                "VALUES" +
-                "(@numero)";
-            cmd.CommandText =
-                "INSERT INTO Instituicao(Complemento)" +
-                "VALUES" +
-                "(@complemento)";
-            cmd.CommandText =
-                "INSERT INTO Instituicao(Bairro) " +
-                "VALUES" +
-                "(@bairro)";
-            cmd.CommandText =
-                "INSERT INTO Instituicao(Cidade)" +
-                "VALUES" +
-                "(@cidade)";
-            cmd.CommandText =
-                "INSERT INTO Instituicao(Uf)" +
-                "VALUES" +
-                "(@uf)";
-            cmd.CommandText =
-                "INSERT INTO Instituicao(Cep)" +
-                "VALUES" +
-                "(@cep)";
+                "(@nome, @logradouro, @numero, @complemento, @bairro, @cidade, @uf, @cep)";
+            
             cmd.Parameters.AddWithValue("@nome", i.Nome);
             cmd.Parameters.AddWithValue("@logradouro", i.Logradouro);
             cmd.Parameters.AddWithValue("@numero", i.Numero);

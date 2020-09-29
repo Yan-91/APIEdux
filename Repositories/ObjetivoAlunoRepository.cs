@@ -55,13 +55,10 @@ namespace API_Edux.Repositories
             cmd.Connection = conexao.Conectar();
 
             cmd.CommandText =
-                "INSERT INTO ObjetivoAluno (Nota)" +
+                "INSERT INTO ObjetivoAluno (Nota , DataAlcancado)" +
                 "VALUES" +
-                "(@nota)";
-            cmd.CommandText =
-                "INSERT INTO ObjetivoAluno (DataAlcancado)" +
-                "VALUES" +
-                "(@dataalcancado)";
+                "(@nota , @dataalcancado)";
+           
 
             cmd.Parameters.AddWithValue("@nota", b.Nota);
             cmd.Parameters.AddWithValue("@dataalcancado", b.DataAlcancado);
