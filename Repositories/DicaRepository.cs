@@ -68,6 +68,7 @@ namespace API_Edux.Repositories
                 "VALUES" +
                 "(@imagem)";
             cmd.Parameters.AddWithValue("@texto", d.Texto);
+            cmd.Parameters.AddWithValue("@imagem", d.Imagem);
 
             //POST = ExecuteNonQuery();
             cmd.ExecuteNonQuery();

@@ -42,15 +42,15 @@ namespace API_Edux.Repositories
 
             SqlDataReader dados = cmd.ExecuteReader();
 
-            Curtida i = new Curtida();
+            Curtida l = new Curtida();
             while (dados.Read())
             {
-                i.IdCurtida = Convert.ToInt32(dados.GetValue(0));
-                i.IdDica = Convert.ToInt32(dados.GetValue(1));
-                i.IdUsuario = Convert.ToInt32(dados.GetValue(2));
+                l.IdCurtida = Convert.ToInt32(dados.GetValue(0));
+                l.IdDica = Convert.ToInt32(dados.GetValue(1));
+                l.IdUsuario = Convert.ToInt32(dados.GetValue(2));
             }
             conexao.Desconectar();
-            return i;
+            return l;
         }
 
         public Curtida Cadastrar(Curtida l)
