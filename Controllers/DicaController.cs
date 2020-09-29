@@ -36,7 +36,12 @@ namespace API_Edux.Controllers
         [HttpPost]
         public Dica Post([FromForm] Dica d)
         {
+            if (dica.Imagem != null)
+            {
+                var urlImagem = Upload.Local(dica.Imagem);
 
+                dica.UrlImagem = urlImagem;
+            }
             return reposi.Cadastrar(d);
 
             
