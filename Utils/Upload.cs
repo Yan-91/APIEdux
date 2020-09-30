@@ -23,6 +23,9 @@ namespace API_Edux.Utils
             return  "http://localhost:58611/upload/imagens/" + nomeArquivo;
         }
 
-        
+        internal static object Local(string imagem)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

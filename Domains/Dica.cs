@@ -14,7 +14,7 @@ namespace API_Edux.Domains
 
         public int IdDica { get; set; }
         public string Texto { get; set; }
-        [NotMapped]//Não mapeia a propriedade no banco
+        
         public IFormFile Imagem { get; set; }
 
         public string UrlImagem { get; set; }
