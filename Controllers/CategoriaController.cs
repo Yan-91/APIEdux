@@ -14,40 +14,45 @@ namespace API_Edux.Controllers
     [ApiController]
     public class CategoriaController : ControllerBase
     {
-        CategoriaRepository repr = new CategoriaRepository();
+        private readonly CategoriaRepository _CategoriaRepository;
+
+        public CategoriaController()
+        {
+            _CategoriaRepository = new CategoriaRepository();
+        }
         // GET: api/<CategoriaController>
         [HttpGet]
         public List<Categoria> Get()
         {
-            return repr.LerTodos();
+            return _CategoriaRepository.LerTodos();
         }
 
         // GET api/<CategoriaController>/5
         [HttpGet("{id}")]
         public Categoria Get(int id)
         {
-            return repr.BuscarPorId(id);
+            return _CategoriaRepository.BuscarPorId(id);
         }
 
         // POST api/<CategoriaController>
         [HttpPost]
-        public Categoria Post([FromBody] Categoria c)
+        public Categoria Post([FromBody] Categoria categoria)
         {
-            return repr.Cadastrar(c);
+            return _CategoriaRepository.Cadastrar(categoria);
         }
 
         // PUT api/<CategoriaController>/5
         [HttpPut("{id}")]
-        public Categoria Put(int id, [FromBody] Categoria c)
+        public Categoria Put(int id, [FromBody] Categoria categoria)
         {
-            return repr.Alterar(id,c);
+            return _CategoriaRepository.Alterar(id,categoria);
         }
 
         // DELETE api/<CategoriaController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            repr.Excluir(id);
+            _CategoriaRepository.Excluir(id);
         }
     }
 }

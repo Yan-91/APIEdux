@@ -8,13 +8,13 @@ namespace API_Edux.Interfaces
 {
     interface IDica
     {
-        Dica Cadastrar(Dica d);
+        Dica Cadastrar(Dica dica);
 
         List<Dica> LerTodos();
 
         Dica BuscarPorId(int id);
 
-        Dica Alterar(int id, Dica d);
+        Dica Alterar(int id, Dica dica);
 
         void Excluir(int id);
     }

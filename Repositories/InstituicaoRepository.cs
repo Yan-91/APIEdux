@@ -16,7 +16,7 @@ namespace API_Edux.Repositories
 
         SqlCommand cmd = new SqlCommand();
 
-        public Instituicao Alterar(int id, Instituicao i)
+        public Instituicao Alterar(int id, Instituicao instituicao)
         {
             cmd.Connection = conexao.Conectar();
 
@@ -29,19 +29,19 @@ namespace API_Edux.Repositories
             cmd.CommandText = "UPDATE Instituicao SET Uf = @uf WHERE IdInstituicao = @id";
             cmd.CommandText = "UPDATE Instituicao SET Cep = @cep WHERE IdInstituicao = @id";
 
-            cmd.Parameters.AddWithValue("@nome", i.Nome);
+            cmd.Parameters.AddWithValue("@nome", instituicao.Nome);
             cmd.Parameters.AddWithValue("@id", id);
-            cmd.Parameters.AddWithValue("@logradouro", i.Logradouro);
-            cmd.Parameters.AddWithValue("@numero", i.Numero);
-            cmd.Parameters.AddWithValue("@complemento", i.Complemento);
-            cmd.Parameters.AddWithValue("@bairro", i.Bairro);
-            cmd.Parameters.AddWithValue("@cidade", i.Cidade);
-            cmd.Parameters.AddWithValue("@uf", i.Uf);
-            cmd.Parameters.AddWithValue("cep", i.Cep);
+            cmd.Parameters.AddWithValue("@logradouro", instituicao.Logradouro);
+            cmd.Parameters.AddWithValue("@numero", instituicao.Numero);
+            cmd.Parameters.AddWithValue("@complemento", instituicao.Complemento);
+            cmd.Parameters.AddWithValue("@bairro", instituicao.Bairro);
+            cmd.Parameters.AddWithValue("@cidade", instituicao.Cidade);
+            cmd.Parameters.AddWithValue("@uf", instituicao.Uf);
+            cmd.Parameters.AddWithValue("cep", instituicao.Cep);
 
             cmd.ExecuteNonQuery();
             conexao.Desconectar();
-            return i;
+            return instituicao;
         }
 
         public Instituicao BuscarPorId(int id)
@@ -54,18 +54,18 @@ namespace API_Edux.Repositories
 
             SqlDataReader dados = cmd.ExecuteReader();
 
-            Instituicao i = new Instituicao();
+            Instituicao instituicao = new Instituicao();
             while (dados.Read())
             {
-                i.IdInstituicao = Convert.ToInt32(dados.GetValue(0));
-                i.Nome = dados.GetValue(1).ToString();
-                i.Logradouro = dados.GetValue(2).ToString();
-                i.Numero = dados.GetValue(3).ToString();
-                i.Complemento = dados.GetValue(4).ToString();
-                i.Bairro = dados.GetValue(5).ToString();
-                i.Cidade = dados.GetValue(6).ToString();
-                i.Uf = dados.GetValue(7).ToString();
-                i.Cep = dados.GetValue(8).ToString();
+                instituicao.IdInstituicao = Convert.ToInt32(dados.GetValue(0));
+                instituicao.Nome = dados.GetValue(1).ToString();
+                instituicao.Logradouro = dados.GetValue(2).ToString();
+                instituicao.Numero = dados.GetValue(3).ToString();
+                instituicao.Complemento = dados.GetValue(4).ToString();
+                instituicao.Bairro = dados.GetValue(5).ToString();
+                instituicao.Cidade = dados.GetValue(6).ToString();
+                instituicao.Uf = dados.GetValue(7).ToString();
+                instituicao.Cep = dados.GetValue(8).ToString();
 
 
 
@@ -73,14 +73,14 @@ namespace API_Edux.Repositories
             }
             conexao.Desconectar();
             //return
-            return i;
+            return instituicao;
 
 
 
 
         }
 
-        public Instituicao Cadastrar(Instituicao i)
+        public Instituicao Cadastrar(Instituicao instituicao)
         {
             cmd.Connection = conexao.Conectar();
             cmd.CommandText =
@@ -88,17 +88,17 @@ namespace API_Edux.Repositories
                 "VALUES" +
                 "(@nome, @logradouro, @numero, @complemento, @bairro, @cidade, @uf, @cep)";
             
-            cmd.Parameters.AddWithValue("@nome", i.Nome);
-            cmd.Parameters.AddWithValue("@logradouro", i.Logradouro);
-            cmd.Parameters.AddWithValue("@numero", i.Numero);
-            cmd.Parameters.AddWithValue("@complemento", i.Complemento);
-            cmd.Parameters.AddWithValue("@bairro", i.Bairro);
-            cmd.Parameters.AddWithValue("@cidade", i.Cidade);
-            cmd.Parameters.AddWithValue("@uf", i.Uf);
-            cmd.Parameters.AddWithValue("@cep", i.Cep);
+            cmd.Parameters.AddWithValue("@nome", instituicao.Nome);
+            cmd.Parameters.AddWithValue("@logradouro", instituicao.Logradouro);
+            cmd.Parameters.AddWithValue("@numero", instituicao.Numero);
+            cmd.Parameters.AddWithValue("@complemento", instituicao.Complemento);
+            cmd.Parameters.AddWithValue("@bairro", instituicao.Bairro);
+            cmd.Parameters.AddWithValue("@cidade", instituicao.Cidade);
+            cmd.Parameters.AddWithValue("@uf", instituicao.Uf);
+            cmd.Parameters.AddWithValue("@cep", instituicao.Cep);
 
             cmd.ExecuteNonQuery();
-            return i;
+            return instituicao;
 
         }
 

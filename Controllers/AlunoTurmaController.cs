@@ -14,40 +14,45 @@ namespace API_Edux.Controllers
     [ApiController]
     public class AlunoTurmaController : ControllerBase
     {
-        AlunoTurmaRepository repu = new AlunoTurmaRepository();
+        private readonly AlunoTurmaRepository _AlunoTurmaRepository;
+
+        public AlunoTurmaController()
+        {
+            _AlunoTurmaRepository = new AlunoTurmaRepository();
+        }
         // GET: api/<AlunoTurmaController>
         [HttpGet]
         public List<AlunoTurma> Get()
         {
-            return repu.LerTodos();
+            return _AlunoTurmaRepository.LerTodos();
         }
 
         // GET api/<AlunoTurmaController>/5
         [HttpGet("{id}")]
         public AlunoTurma Get(int id)
         {
-            return repu.BuscarPorId(id);
+            return _AlunoTurmaRepository.BuscarPorId(id);
         }
 
         // POST api/<AlunoTurmaController>
         [HttpPost]
-        public AlunoTurma Post([FromBody] AlunoTurma g)
+        public AlunoTurma Post([FromBody] AlunoTurma alunoTurma)
         {
-            return repu.Cadastrar(g);
+            return _AlunoTurmaRepository.Cadastrar(alunoTurma);
         }
 
         // PUT api/<AlunoTurmaController>/5
         [HttpPut("{id}")]
-        public AlunoTurma Put(int id, [FromBody] AlunoTurma g)
+        public AlunoTurma Put(int id, [FromBody] AlunoTurma alunoTurma)
         {
-            return repu.Alterar(id, g);
+            return _AlunoTurmaRepository.Alterar(id, alunoTurma);
         }
 
         // DELETE api/<AlunoTurmaController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            repu.Excluir(id);
+            _AlunoTurmaRepository.Excluir(id);
         }
     }
 }

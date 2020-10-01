@@ -16,49 +16,55 @@ namespace API_Edux.Controllers
     [ApiController]
     public class DicaController : ControllerBase
     {
-        
-        DicaRepository reposi = new DicaRepository();
+
+        private readonly DicaRepository _DicaRepository;
+
+        public DicaController()
+        {
+            _DicaRepository = new DicaRepository();
+        }
+
         // GET: api/<ValuesController>
         [HttpGet]
         public List<Dica> Get()
         {
-            return reposi.LerTodos();
+            return _DicaRepository.LerTodos();
         }
 
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]
         public Dica Get(int id)
         {
-            return reposi.BuscarPorId(id);
+            return _DicaRepository.BuscarPorId(id);
         }
 
         // POST api/<ValuesController>
         [HttpPost]
-        public Dica Post([FromForm] Dica d)
+        public Dica Post([FromForm] Dica dica)
         {
-            if (d.Imagem != null)
+            if (dica.Imagem != null)
             {
-                var urlImagem = Upload.Local(d.Imagem);
+                var urlImagem = Upload.Local(dica.Imagem);
 
-                d.UrlImagem = urlImagem;
+                dica.UrlImagem = urlImagem;
             }
-            return reposi.Cadastrar(d);
+            return _DicaRepository.Cadastrar(dica);
 
             
         }
 
         // PUT api/<ValuesController>/5
         [HttpPut("{id}")]
-        public Dica Put(int id, [FromBody] Dica d)
+        public Dica Put(int id, [FromBody] Dica dica)
         {
-            return reposi.Alterar(id, d);
+            return _DicaRepository.Alterar(id, dica);
         }
 
         // DELETE api/<ValuesController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            reposi.Excluir(id);
+            _DicaRepository.Excluir(id);
         }
     }
 }

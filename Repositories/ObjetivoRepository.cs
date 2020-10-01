@@ -15,18 +15,18 @@ namespace API_Edux.Repositories
 
         SqlCommand cmd = new SqlCommand();
 
-        public Objetivo Alterar(int id, Objetivo h)
+        public Objetivo Alterar(int id, Objetivo objetivo)
         {
             cmd.Connection = conexao.Conectar();
             //Aplicando os parametros
             cmd.CommandText = "UPDATE Objetivo SET Descricao = @descricao WHERE IdObjetivo = @id";
 
             cmd.Parameters.AddWithValue("@id", id);
-            cmd.Parameters.AddWithValue("@descricao", h.Descricao);
+            cmd.Parameters.AddWithValue("@descricao", objetivo.Descricao);
 
             cmd.ExecuteNonQuery();
 
-            return h;
+            return objetivo;
         }
 
         public Objetivo BuscarPorId(int id)
@@ -37,20 +37,20 @@ namespace API_Edux.Repositories
             cmd.Parameters.AddWithValue("@id", id);
             SqlDataReader dados = cmd.ExecuteReader();
 
-            Objetivo h = new Objetivo();
+            Objetivo objetivo = new Objetivo();
             while (dados.Read())
             {
-                h.IdObjetivo = Convert.ToInt32(dados.GetValue(0));
-                h.Descricao = dados.GetValue(1).ToString();
-                h.IdCategoria = Convert.ToInt32(dados.GetValue(2));
+                objetivo.IdObjetivo = Convert.ToInt32(dados.GetValue(0));
+                objetivo.Descricao = dados.GetValue(1).ToString();
+                objetivo.IdCategoria = Convert.ToInt32(dados.GetValue(2));
             }
             conexao.Desconectar();
-            return h;
+            return objetivo;
 
 
         }
 
-        public Objetivo Cadastrar(Objetivo h)
+        public Objetivo Cadastrar(Objetivo objetivo)
         {
             cmd.Connection = conexao.Conectar();
 
@@ -59,11 +59,11 @@ namespace API_Edux.Repositories
                 "VALUES" +
                 "(@descricao)";
 
-            cmd.Parameters.AddWithValue("@descricao", h.Descricao);
+            cmd.Parameters.AddWithValue("@descricao", objetivo.Descricao);
 
             //executeNONQUERY
             cmd.ExecuteNonQuery();
-            return h;
+            return objetivo;
         }
 
         public void Excluir(int id)

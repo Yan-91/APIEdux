@@ -15,7 +15,7 @@ namespace API_Edux.Repositories
 
         EduxContext conexao = new EduxContext();
         SqlCommand cmd = new SqlCommand();
-        public Turma Alterar(int id, Turma f)
+        public Turma Alterar(int id, Turma turma)
         {
             cmd.Connection = conexao.Conectar();
 
@@ -28,7 +28,7 @@ namespace API_Edux.Repositories
             //Encerrando Conexão
 
             conexao.Desconectar();
-            return f;
+            return turma;
         }
 
         public Turma BuscarPorId(int id)
@@ -41,22 +41,22 @@ namespace API_Edux.Repositories
 
             SqlDataReader dados = cmd.ExecuteReader();
 
-            Turma f = new Turma();
+            Turma turma = new Turma();
             while (dados.Read())
             {
-                f.IdTurma = Convert.ToInt32(dados.GetValue(0));
-                f.Descricao = dados.GetValue(1).ToString();
-                f.IdCurso = Convert.ToInt32(dados.GetValue(2));
+                turma.IdTurma = Convert.ToInt32(dados.GetValue(0));
+                turma.Descricao = dados.GetValue(1).ToString();
+                turma.IdCurso = Convert.ToInt32(dados.GetValue(2));
             }
             //dados.GetValue(1).ToString();
 
             conexao.Desconectar();
-            return f;
+            return turma;
             
 
         }
 
-        public Turma Cadastrar(Turma f)
+        public Turma Cadastrar(Turma turma)
         {
             cmd.Connection = conexao.Conectar();
 
@@ -64,10 +64,10 @@ namespace API_Edux.Repositories
                 "INSERT INTO Turma(Descricao)" +
                 "VALUES" +
                 "(@descricao)";
-            cmd.Parameters.AddWithValue("@descricao", f.Descricao);
+            cmd.Parameters.AddWithValue("@descricao", turma.Descricao);
 
             cmd.ExecuteNonQuery();
-            return f;
+            return turma;
         }
 
         public void Excluir(int id)

@@ -18,7 +18,7 @@ namespace API_Edux.Repositories
         SqlCommand cmd = new SqlCommand();
 
 
-        public Curtida Alterar(int id, Curtida l)
+        public Curtida Alterar(int id, Curtida curtida)
         {
             cmd.Connection = conexao.Conectar();
 
@@ -29,7 +29,7 @@ namespace API_Edux.Repositories
             cmd.ExecuteNonQuery();
             //encerrando Conexão
             conexao.Desconectar();
-            return l;
+            return curtida;
         }
 
         public Curtida BuscarPorId(int id)
@@ -42,18 +42,18 @@ namespace API_Edux.Repositories
 
             SqlDataReader dados = cmd.ExecuteReader();
 
-            Curtida l = new Curtida();
+            Curtida curtida = new Curtida();
             while (dados.Read())
             {
-                l.IdCurtida = Convert.ToInt32(dados.GetValue(0));
-                l.IdDica = Convert.ToInt32(dados.GetValue(1));
-                l.IdUsuario = Convert.ToInt32(dados.GetValue(2));
+                curtida.IdCurtida = Convert.ToInt32(dados.GetValue(0));
+                curtida.IdDica = Convert.ToInt32(dados.GetValue(1));
+                curtida.IdUsuario = Convert.ToInt32(dados.GetValue(2));
             }
             conexao.Desconectar();
-            return l;
+            return curtida;
         }
 
-        public Curtida Cadastrar(Curtida l)
+        public Curtida Cadastrar(Curtida curtida)
         {
             cmd.Connection = conexao.Conectar();
 
@@ -61,10 +61,10 @@ namespace API_Edux.Repositories
                 "INSERT INTO Curtida(IdDica)" +
                 "VALUES" +
                 "(@IdDica)";
-            cmd.Parameters.AddWithValue("@IdDica", l.IdDica);
+            cmd.Parameters.AddWithValue("@IdDica", curtida.IdDica);
 
             cmd.ExecuteNonQuery();
-            return l;
+            return curtida;
         }
 
         public void Excluir(int id)

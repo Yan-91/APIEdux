@@ -8,14 +8,14 @@ namespace API_Edux.Interfaces
 {
     interface ICurtida
     {
-        Curtida Cadastrar(Curtida l);
+        Curtida Cadastrar(Curtida curtida);
 
         List<Curtida> LerTodos();
 
         Curtida BuscarPorId(int id);
 
 
-        Curtida Alterar(int id, Curtida l);
+        Curtida Alterar(int id, Curtida curtida);
 
         void Excluir(int id);
     }

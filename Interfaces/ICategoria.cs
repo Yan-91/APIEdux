@@ -8,13 +8,13 @@ namespace API_Edux.Interfaces
 {
     interface ICategoria
     {
-        Categoria Cadastrar(Categoria c);
+        Categoria Cadastrar(Categoria categoria);
 
         List<Categoria> LerTodos();
 
         Categoria BuscarPorId(int id);
 
-        Categoria Alterar(int id, Categoria c);
+        Categoria Alterar(int id, Categoria categoria);
 
         void Excluir(int id);
     }

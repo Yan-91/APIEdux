@@ -14,17 +14,17 @@ namespace API_Edux.Repositories
         EduxContext conexao = new EduxContext();
         SqlCommand cmd = new SqlCommand();
 
-        public Perfil Alterar(int id, Perfil a)
+        public Perfil Alterar(int id, Perfil perfil)
         {
             cmd.Connection = conexao.Conectar();
 
             cmd.CommandText = "UPDATE Perfil SET Permissao = @permissao WHERE IdPerfil = @id";
 
-            cmd.Parameters.AddWithValue("@permissao", a.Permissao);
+            cmd.Parameters.AddWithValue("@permissao", perfil.Permissao);
 
             cmd.ExecuteNonQuery();
 
-            return a;
+            return perfil;
         }
 
         public Perfil BuscarPorId(int id)
@@ -35,17 +35,17 @@ namespace API_Edux.Repositories
             cmd.Parameters.AddWithValue("@id", id);
             SqlDataReader dados = cmd.ExecuteReader();
 
-            Perfil a = new Perfil();
+            Perfil perfil = new Perfil();
             while (dados.Read())
             {
-                a.IdPerfil = Convert.ToInt32(dados.GetValue(0));
-                a.Permissao = dados.GetValue(1).ToString();
+                perfil.IdPerfil = Convert.ToInt32(dados.GetValue(0));
+                perfil.Permissao = dados.GetValue(1).ToString();
             }
             conexao.Desconectar();
-            return a;
+            return perfil;
         }
 
-        public Perfil Cadastrar(Perfil a)
+        public Perfil Cadastrar(Perfil perfil)
         {
             cmd.Connection = conexao.Conectar();
 
@@ -54,10 +54,10 @@ namespace API_Edux.Repositories
                 "VALUES" +
                 "(@permissao)";
 
-            cmd.Parameters.AddWithValue("@permissao", a.Permissao);
+            cmd.Parameters.AddWithValue("@permissao", perfil.Permissao);
 
             cmd.ExecuteNonQuery();
-            return a;
+            return perfil;
         }
 
         public void Excluir(int id)

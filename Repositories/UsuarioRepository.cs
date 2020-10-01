@@ -29,7 +29,7 @@ namespace API_Edux.Repositories
         }
 
 
-        public Usuario Alterar(int id, Usuario j)
+        public Usuario Alterar(int id, Usuario usuario)
         {
             cmd.Connection = conexao.Conectar();
 
@@ -43,7 +43,7 @@ namespace API_Edux.Repositories
             //Encerrando Conexão
 
             conexao.Desconectar();
-            return j;
+            return usuario;
         }
 
         public Usuario BuscarPorId(int id)
@@ -56,37 +56,37 @@ namespace API_Edux.Repositories
 
             SqlDataReader dados = cmd.ExecuteReader();
 
-            Usuario j = new Usuario();
+            Usuario usuario = new Usuario();
             while (dados.Read())
             {
-                j.IdUsuario = Convert.ToInt32(dados.GetValue(0));
-                j.Email = dados.GetValue(1).ToString();
-                j.Senha = dados.GetValue(2).ToString();
-                j.DataUltimoAcesso = Convert.ToDateTime(dados.GetSqlDateTime(3));
-                j.DataCadastro = Convert.ToDateTime(dados.GetSqlDateTime(4));
+                usuario.IdUsuario = Convert.ToInt32(dados.GetValue(0));
+                usuario.Email = dados.GetValue(1).ToString();
+                usuario.Senha = dados.GetValue(2).ToString();
+                usuario.DataUltimoAcesso = Convert.ToDateTime(dados.GetSqlDateTime(3));
+                usuario.DataCadastro = Convert.ToDateTime(dados.GetSqlDateTime(4));
             }
             //dados.GetValue(1).ToString();
 
             conexao.Desconectar();
-            return j;
+            return usuario;
 
         }
 
-        public Usuario Cadastrar(Usuario j)
+        public Usuario Cadastrar(Usuario usuario)
         {
             cmd.Connection = conexao.Conectar();
             cmd.CommandText =
                 "INSERT INTO Usuario (Nome, Email, Senha,  DataUltimoAcesso, DataCadastro)" +
                 "VALUES" +
                 "(@nome, @email, @senha, @dataultimoacesso, @datacadastro)";
-            cmd.Parameters.AddWithValue("@nome", j.Nome);
-            cmd.Parameters.AddWithValue("@email", j.Email);
-            cmd.Parameters.AddWithValue("@senha", j.Senha);
-            cmd.Parameters.AddWithValue("@dataultimoacesso", j.DataUltimoAcesso);
-            cmd.Parameters.AddWithValue("@datacadastro", j.DataCadastro);
+            cmd.Parameters.AddWithValue("@nome", usuario.Nome);
+            cmd.Parameters.AddWithValue("@email", usuario.Email);
+            cmd.Parameters.AddWithValue("@senha", usuario.Senha);
+            cmd.Parameters.AddWithValue("@dataultimoacesso", usuario.DataUltimoAcesso);
+            cmd.Parameters.AddWithValue("@datacadastro", usuario.DataCadastro);
 
             cmd.ExecuteNonQuery();
-            return j;
+            return usuario;
 
         }
 

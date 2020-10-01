@@ -8,14 +8,14 @@ namespace API_Edux.Interfaces
 {
     interface IUsuario
     {
-        Usuario Cadastrar(Usuario j);
+        Usuario Cadastrar(Usuario usuario);
 
         List<Usuario> LerTodos();
 
         Usuario BuscarPorId(int id);
        
 
-        Usuario Alterar(int id, Usuario j);
+        Usuario Alterar(int id, Usuario usuario);
 
         void Excluir(int id);
     }

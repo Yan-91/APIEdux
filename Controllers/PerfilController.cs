@@ -14,40 +14,45 @@ namespace API_Edux.Controllers
     [ApiController]
     public class PerfilController : ControllerBase
     {
-        PerfilRepository reply = new PerfilRepository();
+        private readonly PerfilRepository _PerfilRepository;
+
+        public PerfilController()
+        {
+            _PerfilRepository = new PerfilRepository();
+        }
         // GET: api/<PerfilController>
         [HttpGet]
         public List<Perfil> Get()
         {
-            return reply.LerTodos();
+            return _PerfilRepository.LerTodos();
         }
 
         // GET api/<PerfilController>/5
         [HttpGet("{id}")]
         public Perfil Get(int id)
         {
-            return reply.BuscarPorId(id);
+            return _PerfilRepository.BuscarPorId(id);
         }
 
         // POST api/<PerfilController>
         [HttpPost]
-        public Perfil Post([FromBody] Perfil a)
+        public Perfil Post([FromBody] Perfil perfil)
         {
-            return reply.Cadastrar(a);
+            return _PerfilRepository.Cadastrar(perfil);
         }
 
         // PUT api/<PerfilController>/5
         [HttpPut("{id}")]
-        public Perfil Put(int id, [FromBody] Perfil a)
+        public Perfil Put(int id, [FromBody] Perfil perfil)
         {
-            return reply.Alterar(id, a);
+            return _PerfilRepository.Alterar(id, perfil);
         }
 
         // DELETE api/<PerfilController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            reply.Excluir(id);
+            _PerfilRepository.Excluir(id);
         }
     }
 }

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using API_Edux.Contexts;
 using API_Edux.Domains;
 using API_Edux.Utils;
+using API_Edux.Repositories;
 
 namespace API_Edux.Controllers
 {
@@ -16,6 +17,12 @@ namespace API_Edux.Controllers
     public class UsuarioController : ControllerBase
     {
         private EduxContext _context = new EduxContext();
+        private readonly UsuarioRepository _UsuarioRepository;
+
+        public UsuarioController()
+        {
+            _UsuarioRepository = new UsuarioRepository();
+        }
         public UsuarioController(EduxContext context)
         {
             _context = context;

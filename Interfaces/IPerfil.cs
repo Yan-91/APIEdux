@@ -8,14 +8,14 @@ namespace API_Edux.Interfaces
 {
     interface IPerfil
     {
-        Perfil Cadastrar(Perfil a);
+        Perfil Cadastrar(Perfil perfil);
 
         List<Perfil> LerTodos();
 
         Perfil BuscarPorId(int id);
         
 
-        Perfil Alterar(int id, Perfil a);
+        Perfil Alterar(int id, Perfil perfil);
 
         void Excluir(int id);
     }

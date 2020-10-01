@@ -8,13 +8,13 @@ namespace API_Edux.Interfaces
 {
     interface IInstituicao
     {
-        Instituicao Cadastrar(Instituicao i);
+        Instituicao Cadastrar(Instituicao instituicao);
 
         List<Instituicao> LerTodos();
 
         Instituicao BuscarPorId(int id);
 
-        Instituicao Alterar(int id, Instituicao i);
+        Instituicao Alterar(int id, Instituicao instituicao);
 
         void Excluir(int id);
     }

@@ -8,14 +8,14 @@ namespace API_Edux.Interfaces
 {
     interface IObjetivoAluno
     {
-        ObjetivoAluno Cadastrar(ObjetivoAluno b);
+        ObjetivoAluno Cadastrar(ObjetivoAluno objetivoAluno);
 
         List<ObjetivoAluno> LerTodos();
 
         ObjetivoAluno BuscarPorId(int id);
         
 
-        ObjetivoAluno Alterar(int id, ObjetivoAluno b);
+        ObjetivoAluno Alterar(int id, ObjetivoAluno objetivoAluno);
 
         void Excluir(int id);
     }

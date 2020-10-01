@@ -14,40 +14,46 @@ namespace API_Edux.Controllers
     [ApiController]
     public class InstituicaoController : ControllerBase
     {
-        InstituicaoRepository rep = new InstituicaoRepository();
+        private readonly InstituicaoRepository _InstituicaoRepository;
+
+        public InstituicaoController()
+        {
+            _InstituicaoRepository = new InstituicaoRepository();
+        }
+
         // GET: api/<InstituicaoController>
         [HttpGet]
         public List<Instituicao> Get()
         {
-            return rep.LerTodos();
+            return _InstituicaoRepository.LerTodos();
         }
 
         // GET api/<InstituicaoController>/5
         [HttpGet("{id}")]
         public Instituicao Get(int id)
         {
-            return rep.BuscarPorId(id);
+            return _InstituicaoRepository.BuscarPorId(id);
         }
 
         // POST api/<InstituicaoController>
         [HttpPost]
-        public Instituicao Post([FromBody] Instituicao i)
+        public Instituicao Post([FromBody] Instituicao instituicao)
         {
-            return rep.Cadastrar(i);
+            return _InstituicaoRepository.Cadastrar(instituicao);
         }
 
         // PUT api/<InstituicaoController>/5
         [HttpPut("{id}")]
-        public Instituicao Put(int id, [FromBody] Instituicao i)
+        public Instituicao Put(int id, [FromBody] Instituicao instituicao)
         {
-            return rep.Alterar(id, i);
+            return _InstituicaoRepository.Alterar(id, instituicao);
         }
 
         // DELETE api/<InstituicaoController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            rep.Excluir(id);
+            _InstituicaoRepository.Excluir(id);
         }
     }
 }

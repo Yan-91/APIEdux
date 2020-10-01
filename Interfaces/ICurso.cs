@@ -8,14 +8,14 @@ namespace API_Edux.Interfaces
 {
     interface ICurso
     {
-        Curso Cadastrar(Curso k);
+        Curso Cadastrar(Curso curso);
 
         List<Curso> LerTodos();
 
         Curso BuscarPorId(int id);
 
 
-        Curso Alterar(int id, Curso k);
+        Curso Alterar(int id, Curso curso);
 
         void Excluir(int id);
     }

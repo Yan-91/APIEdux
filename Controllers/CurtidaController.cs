@@ -14,40 +14,46 @@ namespace API_Edux.Controllers
     [ApiController]
     public class CurtidaController : ControllerBase
     {
-        CurtidaRepository repo = new CurtidaRepository();
+        private readonly CurtidaRepository _CurtidaRepository;
+
+        public CurtidaController()
+        {
+            _CurtidaRepository = new CurtidaRepository();
+        }
+
         // GET: api/<CurtidaController>
         [HttpGet]
         public   List<Curtida> Get()
         {
-            return repo.LerTodos();
+            return _CurtidaRepository.LerTodos();
         }
 
         // GET api/<CurtidaController>/5
         [HttpGet("{id}")]
         public Curtida Get(int id)
         {
-            return repo.BuscarPorId(id);
+            return _CurtidaRepository.BuscarPorId(id);
         }
 
         // POST api/<CurtidaController>
         [HttpPost]
-        public Curtida Post([FromBody] Curtida l)
+        public Curtida Post([FromBody] Curtida curtida)
         {
-            return repo.Cadastrar(l);
+            return _CurtidaRepository.Cadastrar(curtida);
         }
 
         // PUT api/<CurtidaController>/5
         [HttpPut("{id}")]
-        public Curtida Put(int id, [FromBody] Curtida l)
+        public Curtida Put(int id, [FromBody] Curtida curtida)
         {
-            return repo.Alterar(id, l);
+            return _CurtidaRepository.Alterar(id, curtida);
         }
 
         // DELETE api/<CurtidaController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            repo.Excluir(id);
+            _CurtidaRepository.Excluir(id);
         }
     }
 }

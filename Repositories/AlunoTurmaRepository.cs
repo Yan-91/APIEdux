@@ -17,7 +17,7 @@ namespace API_Edux.Repositories
 
         SqlCommand cmd = new SqlCommand();
 
-        public AlunoTurma Alterar(int id, AlunoTurma g)
+        public AlunoTurma Alterar(int id, AlunoTurma alunoTurma)
         {
             cmd.Connection = conexao.Conectar();
 
@@ -29,7 +29,7 @@ namespace API_Edux.Repositories
 
             //encerrando Conexão
             conexao.Desconectar();
-            return g;
+            return alunoTurma;
         }
 
         public AlunoTurma BuscarPorId(int id)
@@ -42,19 +42,19 @@ namespace API_Edux.Repositories
 
             SqlDataReader dados = cmd.ExecuteReader();
 
-            AlunoTurma g = new AlunoTurma();
+            AlunoTurma alunoTurma = new AlunoTurma();
             while (dados.Read())
             {
-                g.IdAlunoTurma = Convert.ToInt32(dados.GetValue(0));
-                g.Matricula = dados.GetValue(1).ToString();            
-                g.IdUsuario = Convert.ToInt32(dados.GetValue(2));
-                g.IdTurma = Convert.ToInt32(dados.GetValue(3));
+                alunoTurma.IdAlunoTurma = Convert.ToInt32(dados.GetValue(0));
+                alunoTurma.Matricula = dados.GetValue(1).ToString();            
+                alunoTurma.IdUsuario = Convert.ToInt32(dados.GetValue(2));
+                alunoTurma.IdTurma = Convert.ToInt32(dados.GetValue(3));
             }
             conexao.Desconectar();
-            return g;
+            return alunoTurma;
         }
 
-        public AlunoTurma Cadastrar(AlunoTurma g)
+        public AlunoTurma Cadastrar(AlunoTurma alunoTurma)
         {
             cmd.Connection = conexao.Conectar();
 
@@ -62,10 +62,10 @@ namespace API_Edux.Repositories
                 "INSERT INTO AlunoTurma(Matricula)" +
                 "VALUES" +
                 "(Matricula)";
-            cmd.Parameters.AddWithValue("@matricula", g.Matricula);
+            cmd.Parameters.AddWithValue("@matricula", alunoTurma.Matricula);
 
             cmd.ExecuteNonQuery();
-            return g;
+            return alunoTurma;
         }
 
         public void Excluir(int id)

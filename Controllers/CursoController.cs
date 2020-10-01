@@ -15,41 +15,46 @@ namespace API_Edux.Controllers
     public class CursoController : ControllerBase
     {
         //Chamando o Repositorio 
-        CursoRepository repos = new CursoRepository();
+        private readonly CursoRepository _CursoRepository;
+
+        public CursoController()
+        {
+            _CursoRepository = new CursoRepository();
+        }
 
         // GET: api/<CursoController>
         [HttpGet]
         public List<Curso> Get()
         {
-            return repos.LerTodos();
+            return _CursoRepository.LerTodos();
         }
 
         // GET api/<CursoController>/5
         [HttpGet("{id}")]
         public Curso Get(int id)
         {
-            return repos.BuscarPorId(id);
+            return _CursoRepository.BuscarPorId(id);
         }
 
         // POST api/<CursoController>
         [HttpPost]
-        public Curso Post([FromBody] Curso k)
+        public Curso Post([FromBody] Curso curso)
         {
-            return repos.Cadastrar(k);
+            return _CursoRepository.Cadastrar(curso);
         }
 
         // PUT api/<CursoController>/5
         [HttpPut("{id}")]
-        public Curso Put(int id, [FromBody] Curso k)
+        public Curso Put(int id, [FromBody] Curso curso)
         {
-            return repos.Alterar(id, k);
+            return _CursoRepository.Alterar(id,curso);
         }
 
         // DELETE api/<CursoController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            repos.Excluir(id);
+            _CursoRepository.Excluir(id);
         }
     }
 }

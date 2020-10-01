@@ -16,20 +16,20 @@ namespace API_Edux.Repositories
         //chamando o comando
         SqlCommand cmd = new SqlCommand();
 
-        public Dica Alterar(int id, Dica d)
+        public Dica Alterar(int id, Dica dica)
         {
             cmd.Connection = conexao.Conectar();
             //Aplicando os parametros
             cmd.CommandText = "UPDATE Dica SET Texto = @texto WHERE IdDica = @id";
             cmd.CommandText = "UPDATE Dica SET Imagem = @imagem WHERE IdDica = @id";
 
-            cmd.Parameters.AddWithValue("@texto", d.Texto);
+            cmd.Parameters.AddWithValue("@texto", dica.Texto);
             cmd.Parameters.AddWithValue("@id", id);
 
             cmd.ExecuteNonQuery();
             //encerrando conexão
             conexao.Desconectar();
-            return d;
+            return dica;
         }
 
         public Dica BuscarPorId(int id)
@@ -41,21 +41,21 @@ namespace API_Edux.Repositories
             cmd.Parameters.AddWithValue("@id", id);
             SqlDataReader dados = cmd.ExecuteReader();
 
-            Dica d = new Dica();
+            Dica dica = new Dica();
             while (dados.Read())
             {
-                d.IdDica = Convert.ToInt32(dados.GetValue(0));
-                d.Texto = dados.GetValue(1).ToString();
-                d.Imagem = (Microsoft.AspNetCore.Http.IFormFile)dados.GetStream(2);
-                d.UrlImagem = dados.GetValue(3).ToString();
-                d.IdUsuario = Convert.ToInt32(dados.GetValue(4));
+                dica.IdDica = Convert.ToInt32(dados.GetValue(0));
+                dica.Texto = dados.GetValue(1).ToString();
+                dica.Imagem = (Microsoft.AspNetCore.Http.IFormFile)dados.GetStream(2);
+                dica.UrlImagem = dados.GetValue(3).ToString();
+                dica.IdUsuario = Convert.ToInt32(dados.GetValue(4));
 
             }
             conexao.Desconectar();
-            return d;
+            return dica;
         }
 
-        public Dica Cadastrar(Dica d)
+        public Dica Cadastrar(Dica dica)
         {
             cmd.Connection = conexao.Conectar();
 
@@ -67,12 +67,12 @@ namespace API_Edux.Repositories
                 "INSERT INTO Dica (Imagem)" +
                 "VALUES" +
                 "(@imagem)";
-            cmd.Parameters.AddWithValue("@texto", d.Texto);
-            cmd.Parameters.AddWithValue("@imagem", d.Imagem);
+            cmd.Parameters.AddWithValue("@texto", dica.Texto);
+            cmd.Parameters.AddWithValue("@imagem", dica.Imagem);
 
             //POST = ExecuteNonQuery();
             cmd.ExecuteNonQuery();
-            return d;
+            return dica;
 
         }
 

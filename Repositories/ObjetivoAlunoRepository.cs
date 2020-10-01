@@ -14,20 +14,20 @@ namespace API_Edux.Repositories
         EduxContext conexao = new EduxContext();
         SqlCommand cmd = new SqlCommand();
 
-        public ObjetivoAluno Alterar(int id, ObjetivoAluno b)
+        public ObjetivoAluno Alterar(int id, ObjetivoAluno objetivoAluno)
         {
             cmd.Connection = conexao.Conectar();
             //APLICANDO os parametros
             cmd.CommandText = "UPDATE ObjetivoAluno SET Nota = @nota WHERE IdObjetivoAluno = @id";
             cmd.CommandText = "UPDATE ObjetivoAluno SET DataAlcancado = @dataalcancado WHERE IdObjetivoAluno = @id";
 
-            cmd.Parameters.AddWithValue("@nota", b.Nota);
+            cmd.Parameters.AddWithValue("@nota", objetivoAluno.Nota);
             cmd.Parameters.AddWithValue("@id", id);
-            cmd.Parameters.AddWithValue("dataalcancado", b.DataAlcancado);
+            cmd.Parameters.AddWithValue("dataalcancado", objetivoAluno.DataAlcancado);
 
             cmd.ExecuteNonQuery();
             //Encerrando conexao
-            return b;
+            return objetivoAluno;
         }
 
         public ObjetivoAluno BuscarPorId(int id)
@@ -38,19 +38,19 @@ namespace API_Edux.Repositories
             cmd.Parameters.AddWithValue("@id", id);
             SqlDataReader dados = cmd.ExecuteReader();
 
-            ObjetivoAluno b = new ObjetivoAluno();
+            ObjetivoAluno objetivoAluno = new ObjetivoAluno();
             while (dados.Read())
             {
-                b.IdObjetivoAluno = Convert.ToInt32(dados.GetValue(0));
-                b.Nota = Convert.ToInt32(dados.GetValue(1));
-                b.DataAlcancado = Convert.ToDateTime(dados.GetValue(2));
-                b.IdAlunoTurma = Convert.ToInt32(dados.GetValue(3));
+                objetivoAluno.IdObjetivoAluno = Convert.ToInt32(dados.GetValue(0));
+                objetivoAluno.Nota = Convert.ToInt32(dados.GetValue(1));
+                objetivoAluno.DataAlcancado = Convert.ToDateTime(dados.GetValue(2));
+                objetivoAluno.IdAlunoTurma = Convert.ToInt32(dados.GetValue(3));
             }
             conexao.Desconectar();
-            return b;
+            return objetivoAluno;
         }
 
-        public ObjetivoAluno Cadastrar(ObjetivoAluno b)
+        public ObjetivoAluno Cadastrar(ObjetivoAluno objetivoAluno)
         {
             cmd.Connection = conexao.Conectar();
 
@@ -60,12 +60,12 @@ namespace API_Edux.Repositories
                 "(@nota , @dataalcancado)";
            
 
-            cmd.Parameters.AddWithValue("@nota", b.Nota);
-            cmd.Parameters.AddWithValue("@dataalcancado", b.DataAlcancado);
+            cmd.Parameters.AddWithValue("@nota", objetivoAluno.Nota);
+            cmd.Parameters.AddWithValue("@dataalcancado", objetivoAluno.DataAlcancado);
 
             //Post = ExecuteNonQuery
             cmd.ExecuteNonQuery();
-            return b;
+            return objetivoAluno;
 
 
         }

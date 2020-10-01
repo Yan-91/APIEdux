@@ -16,19 +16,19 @@ namespace API_Edux.Repositories
         //Trazendo o Comando que vai executar os comandos do banco de dados
         SqlCommand cmd = new SqlCommand();
 
-        public ProfessorTurma Alterar(int id, ProfessorTurma e)
+        public ProfessorTurma Alterar(int id, ProfessorTurma professorTurma)
         {
             cmd.Connection = conexao.Conectar();
             //colocando os Paramentros 
             cmd.CommandText = "UPDATE Curso SET Descricao = @descricao WHERE IdCurso = @id";
 
-            cmd.Parameters.AddWithValue("@descricao", e.Descricao);
+            cmd.Parameters.AddWithValue("@descricao", professorTurma.Descricao);
             cmd.Parameters.AddWithValue("@id", id);
 
             cmd.ExecuteNonQuery();
             //encerrar Conexão
             conexao.Desconectar();
-            return e;
+            return professorTurma;
         }
        
 
@@ -43,23 +43,23 @@ namespace API_Edux.Repositories
             //agora que ja mostramos vamos executar o comando
             SqlDataReader dados = cmd.ExecuteReader();
 
-            ProfessorTurma e = new ProfessorTurma();
+            ProfessorTurma professorTurma = new ProfessorTurma();
             while (dados.Read())
 
             {
-                e.IdProfessorTurma = Convert.ToInt32(dados.GetValue(0));
-                e.Descricao = dados.GetValue(1).ToString();
-                e.IdTurma = Convert.ToInt32(dados.GetValue(2));
-                e.IdUsuario = Convert.ToInt32(dados.GetValue(3));
+                professorTurma.IdProfessorTurma = Convert.ToInt32(dados.GetValue(0));
+                professorTurma.Descricao = dados.GetValue(1).ToString();
+                professorTurma.IdTurma = Convert.ToInt32(dados.GetValue(2));
+                professorTurma.IdUsuario = Convert.ToInt32(dados.GetValue(3));
 
             }
             conexao.Desconectar();
-            return e;
+            return professorTurma;
 
 
 
          }
-        public ProfessorTurma Cadastrar(ProfessorTurma e)
+        public ProfessorTurma Cadastrar(ProfessorTurma professorTurma)
         {
             cmd.Connection = conexao.Conectar();
 
@@ -67,10 +67,10 @@ namespace API_Edux.Repositories
                 "INSERT INTO ProfessorTurma(Descricao)" +
                 "VALUES" +
                 "(@descricao)";
-            cmd.Parameters.AddWithValue("@descricao", e.Descricao);
+            cmd.Parameters.AddWithValue("@descricao", professorTurma.Descricao);
 
             cmd.ExecuteNonQuery();
-            return e;
+            return professorTurma;
         }
 
         public void Excluir(int id)

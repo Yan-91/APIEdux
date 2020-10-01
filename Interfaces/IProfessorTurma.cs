@@ -8,14 +8,14 @@ namespace API_Edux.Interfaces
 {
     interface IProfessorTurma
     {
-        ProfessorTurma Cadastrar(ProfessorTurma e);
+        ProfessorTurma Cadastrar(ProfessorTurma professorTurma);
 
         List<ProfessorTurma> LerTodos();
 
         ProfessorTurma BuscarPorId(int id);
        
 
-        ProfessorTurma Alterar(int id, ProfessorTurma e);
+        ProfessorTurma Alterar(int id, ProfessorTurma professorTurma);
 
 
         void Excluir(int id);

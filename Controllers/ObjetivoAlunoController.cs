@@ -14,41 +14,46 @@ namespace API_Edux.Controllers
     [ApiController]
     public class ObjetivoAlunoController : ControllerBase
     {
-        ObjetivoAlunoRepository re = new ObjetivoAlunoRepository();
+        private readonly ObjetivoAlunoRepository _ObjetivoAlunoRepository;
+
+        public ObjetivoAlunoController()
+        {
+            _ObjetivoAlunoRepository = new ObjetivoAlunoRepository();
+        }
         // GET: api/<ObjetivoAlunoController>
         [HttpGet]
         public List<ObjetivoAluno> Get()
 
         {
-            return re.LerTodos();
+            return _ObjetivoAlunoRepository.LerTodos();
         }
 
         // GET api/<ObjetivoAlunoController>/5
         [HttpGet("{id}")]
         public ObjetivoAluno Get(int id)
         {
-            return re.BuscarPorId(id);
+            return _ObjetivoAlunoRepository.BuscarPorId(id);
         }
 
         // POST api/<ObjetivoAlunoController>
         [HttpPost]
-        public ObjetivoAluno Post([FromBody] ObjetivoAluno b)
+        public ObjetivoAluno Post([FromBody] ObjetivoAluno objetivoAluno)
         {
-            return re.Cadastrar(b);
+            return _ObjetivoAlunoRepository.Cadastrar(objetivoAluno);
         }
 
         // PUT api/<ObjetivoAlunoController>/5
         [HttpPut("{id}")]
-        public ObjetivoAluno Put(int id, [FromBody] ObjetivoAluno b)
+        public ObjetivoAluno Put(int id, [FromBody] ObjetivoAluno objetivoAluno)
         {
-            return re.Alterar(id, b);
+            return _ObjetivoAlunoRepository.Alterar(id, objetivoAluno);
         }
 
         // DELETE api/<ObjetivoAlunoController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            re.Excluir(id);
+            _ObjetivoAlunoRepository.Excluir(id);
         }
     }
 }

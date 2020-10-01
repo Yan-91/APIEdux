@@ -14,40 +14,45 @@ namespace API_Edux.Controllers
     [ApiController]
     public class ProfessorTurmaController : ControllerBase
     {
-        ProfessorTurmaRepository repa = new ProfessorTurmaRepository();
+        private readonly ProfessorTurmaRepository _ProfessorTurmaRepository;
+
+        public ProfessorTurmaController()
+        {
+            _ProfessorTurmaRepository = new ProfessorTurmaRepository();
+        }
         // GET: api/<ProfessorTurmaController>
         [HttpGet]
         public List<ProfessorTurma> Get()
         {
-            return repa.LerTodos();
+            return _ProfessorTurmaRepository.LerTodos();
         }
 
         // GET api/<ProfessorTurmaController>/5
         [HttpGet("{id}")]
         public ProfessorTurma Get(int id)
         {
-            return repa.BuscarPorId(id);
+            return _ProfessorTurmaRepository.BuscarPorId(id);
         }
 
         // POST api/<ProfessorTurmaController>
         [HttpPost]
-        public ProfessorTurma Post([FromBody] ProfessorTurma e)
+        public ProfessorTurma Post([FromBody] ProfessorTurma professorTurma)
         {
-            return repa.Cadastrar(e);
+            return _ProfessorTurmaRepository.Cadastrar(professorTurma);
         }
 
         // PUT api/<ProfessorTurmaController>/5
         [HttpPut("{id}")]
-        public ProfessorTurma Put(int id, [FromBody] ProfessorTurma e)
+        public ProfessorTurma Put(int id, [FromBody] ProfessorTurma professorTurma)
         {
-            return repa.Alterar(id, e);
+            return _ProfessorTurmaRepository.Alterar(id, professorTurma);
         }
 
         // DELETE api/<ProfessorTurmaController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-             repa.Excluir(id);
+            _ProfessorTurmaRepository.Excluir(id);
         }
     }
 }

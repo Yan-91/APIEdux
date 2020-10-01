@@ -17,19 +17,19 @@ namespace API_Edux.Repositories
         SqlCommand cmd = new SqlCommand();
         
 
-        public Curso Alterar(int id, Curso k)
+        public Curso Alterar(int id, Curso curso)
         {
             cmd.Connection = conexao.Conectar();
             //Colocando os Parametros
             cmd.CommandText = "UPDATE Curso SET NomeCurso = @nomecurso WHERE IdCurso = @id";
 
-            cmd.Parameters.AddWithValue("@nomecurso", k.NomeCurso);
+            cmd.Parameters.AddWithValue("@nomecurso", curso.NomeCurso);
             cmd.Parameters.AddWithValue("@id", id);
 
             cmd.ExecuteNonQuery();
             //encerrar Conexão
             conexao.Desconectar();
-            return k;
+            return curso;
         }
 
         public Curso BuscarPorId(int id)
@@ -42,19 +42,19 @@ namespace API_Edux.Repositories
             //agora que ja mostramos vamos Executar o comando 
             SqlDataReader dados = cmd.ExecuteReader();
 
-            Curso k = new Curso();
+            Curso curso = new Curso();
             while (dados.Read())
             {
-                k.IdCurso = Convert.ToInt32(dados.GetValue(0));
-                k.NomeCurso = dados.GetValue(1).ToString();
-                k.IdInstituicao = Convert.ToInt32(dados.GetValue(2));
+                curso.IdCurso = Convert.ToInt32(dados.GetValue(0));
+                curso.NomeCurso = dados.GetValue(1).ToString();
+                curso.IdInstituicao = Convert.ToInt32(dados.GetValue(2));
             }
             conexao.Desconectar();
-            return k;
+            return curso;
 
         }
 
-        public Curso Cadastrar(Curso k)
+        public Curso Cadastrar(Curso curso)
         {
             cmd.Connection = conexao.Conectar();
 
@@ -62,11 +62,11 @@ namespace API_Edux.Repositories
                 "INSERT INTO Curso (NomeCurso)" +
                 "VALUES" +
                 "(@nomecurso)";
-            cmd.Parameters.AddWithValue("@nomecurso", k.NomeCurso);
+            cmd.Parameters.AddWithValue("@nomecurso", curso.NomeCurso);
 
             //POST = ExecuteNonQuery();
             cmd.ExecuteNonQuery();
-            return k;
+            return curso;
         }
 
         public void Excluir(int id)

@@ -16,19 +16,19 @@ namespace API_Edux.Repositories
         SqlCommand cmd = new SqlCommand();
 
 
-        public Categoria Alterar(int id, Categoria c)
+        public Categoria Alterar(int id, Categoria categoria)
         {
             cmd.Connection = conexao.Conectar();
 
             cmd.CommandText = "UPDATE Categoria SET Tipo = @tipo WHERE IdCategoria = @id";
 
-            cmd.Parameters.AddWithValue("@tipo", c.Tipo);
+            cmd.Parameters.AddWithValue("@tipo", categoria.Tipo);
             cmd.Parameters.AddWithValue("@id", id);
 
             cmd.ExecuteNonQuery();
 
             conexao.Desconectar();
-            return c;
+            return categoria;
         }
 
         public Categoria BuscarPorId(int id)
@@ -41,17 +41,17 @@ namespace API_Edux.Repositories
 
             SqlDataReader dados = cmd.ExecuteReader();
 
-            Categoria c = new Categoria();
+            Categoria categoria = new Categoria();
             while (dados.Read())
             {
-                c.IdCategoria = Convert.ToInt32(dados.GetValue(0));
-                c.Tipo = dados.GetValue(1).ToString();
+                categoria.IdCategoria = Convert.ToInt32(dados.GetValue(0));
+                categoria.Tipo = dados.GetValue(1).ToString();
             }
             conexao.Desconectar();
-            return c;
+            return categoria;
         }
 
-        public Categoria Cadastrar(Categoria c)
+        public Categoria Cadastrar(Categoria categoria)
         {
             cmd.Connection = conexao.Conectar();
 
@@ -60,10 +60,10 @@ namespace API_Edux.Repositories
                 "VALUES" +
                 "(@tipo)";
 
-            cmd.Parameters.AddWithValue("@tipo", c.Tipo);
+            cmd.Parameters.AddWithValue("@tipo", categoria.Tipo);
 
             cmd.ExecuteNonQuery();
-            return c;
+            return categoria;
         }
 
         public void Excluir(int id)
